@@ -1,4 +1,7 @@
 import knex from 'knex'
+import knexStringcase from 'knex-stringcase'
 import config from '../../knexfile'
 
-export default knex(config.development)
+const database = knex(knexStringcase(config.development))
+
+export default database

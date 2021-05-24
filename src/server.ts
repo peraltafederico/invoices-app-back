@@ -1,7 +1,10 @@
 import express, { Request, Response } from 'express'
 import { graphqlHTTP } from 'express-graphql'
+import dotenv from 'dotenv'
 import schema from './schema'
 import database from './database/connection'
+
+dotenv.config()
 
 const app = express()
 
@@ -17,8 +20,9 @@ app.use(
   })
 )
 
-app.listen(3000, async () => {
+app.listen(process.env.PORT || 3000, async () => {
   await database.migrate.latest()
 
-  console.log('Graphql server now up at port 3000')
+  // eslint-disable-next-line no-console
+  console.log(`Graphql server now up at port ${process.env.PORT || 3000}`)
 })
