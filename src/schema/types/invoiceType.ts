@@ -59,13 +59,16 @@ const invoiceType = new GraphQLObjectType<InvoiceProps>({
     date: {
       type: GraphQLNonNull(GraphQLString),
     },
+    total: {
+      type: GraphQLString,
+    },
     paymentTerm: {
       type: paymentTermType,
       resolve: ({ paymentTermId }) => new PaymentTerm().findById(paymentTermId),
     },
     items: {
       type: GraphQLList(itemType),
-      resolve: ({ id }) => new Item().find({ id }),
+      resolve: ({ id }) => new Item().findAllFromInvoice(id),
     },
   }),
 })

@@ -86,7 +86,7 @@ const updateInvoice: GraphQLFieldConfig<unknown, unknown> = {
         await new Item().createBulk(items, editedInvoice.id)
       }
 
-      return await new Invoice().findById(editedInvoice.id)
+      return await new Invoice().findOne(editedInvoice.id)
     } catch (error) {
       throw new Error('There was an error updating the invoice')
     }

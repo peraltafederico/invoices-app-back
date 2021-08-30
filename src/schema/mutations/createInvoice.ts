@@ -75,7 +75,7 @@ const createInvoice: GraphQLFieldConfig<unknown, unknown> = {
         await new Item().createBulk(items, id)
       }
 
-      return await new Invoice().findById(id)
+      return await new Invoice().findOne(id)
     } catch (error) {
       throw new Error(error || 'There was an error creating the invoice')
     }

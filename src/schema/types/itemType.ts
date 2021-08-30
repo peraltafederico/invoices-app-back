@@ -20,6 +20,9 @@ const itemType = new GraphQLObjectType({
     price: {
       type: GraphQLNonNull(GraphQLString),
     },
+    total: {
+      type: GraphQLNonNull(GraphQLString),
+    },
   }),
 })
 
