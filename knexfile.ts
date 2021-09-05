@@ -1,24 +1,31 @@
 import dotenv from 'dotenv'
+import path from 'path'
 
-dotenv.config()
+dotenv.config({ path: path.resolve(__dirname + '/.env') })
+
+const extension =
+  process.env.NODE_CONFIG_ENV === 'production' || process.env.NODE_CONFIG_ENV === 'staging'
+    ? 'js'
+    : 'ts';
 
 export default {
   development: {
     client: 'mysql2',
     connection: {
-      host: '127.0.0.1',
+      host: process.env.DB_HOST,
       user: process.env.DB_USER,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
     },
     migrations: {
-      directory: './src/database/migrations',
+      directory: path.join(__dirname, 'src', 'database', 'migrations'),
+      loadExtensions: [`.${extension}`],
     },
     seeds: {
-      directory: './src/database/seeds',
+      directory: path.join(__dirname, 'src', 'database', 'seeds'),
     },
     pool: {
-      afterCreate: function(conn, cb) {
+      afterCreate: function (conn, cb) {
         conn.query('SET sql_mode="STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION";', function (err) {
           cb(err, conn);
         });
