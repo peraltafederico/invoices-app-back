@@ -45,10 +45,12 @@ jobs:
           aws-region: ${{ secrets.AWS_REGION }}
      # Step 2
       - name: Create CodeDeploy Deployment
-        id: deploy
         run: |
           aws deploy create-deployment \
             --application-name invoices-app-back \
             --deployment-group-name development \
             --deployment-config-name CodeDeployDefault.OneAtATime \
             --github-location repository=${{ github.repository }},commitId=${{ github.sha }}
+
+      - name: Deploy
+        run: ./scripts/deploy.sh
