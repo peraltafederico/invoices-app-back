@@ -12,7 +12,7 @@ const app = express()
 app.use(cors())
 
 app.get('/', (req: Request, res: Response) => {
-  res.send('Hello dasdsa!')
+  res.send('Hello!')
 })
 
 app.use(
