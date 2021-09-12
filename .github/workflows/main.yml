@@ -54,4 +54,6 @@ jobs:
 
       - name: Deploy
         run: |
-          sh ./scripts/deploy.sh
+          cd /home/ec2-user/app/
+          docker pull peraltafederico/invoices-app:latest
+          docker-compose up -d
