@@ -53,4 +53,5 @@ jobs:
             --github-location repository=${{ github.repository }},commitId=${{ github.sha }}
 
       - name: Deploy
-        run: scripts/deploy.sh
+        run: |
+          sh ./scripts/deploy.sh
