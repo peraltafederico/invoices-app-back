@@ -12,7 +12,7 @@ const app = express()
 app.use(cors())
 
 app.get('/', (req: Request, res: Response) => {
-  res.send('Hello cxz!')
+  res.send('Hello dasdsa!')
 })
 
 app.use(
@@ -27,5 +27,5 @@ app.listen(process.env.PORT || 3000, async () => {
   await database.migrate.latest()
 
   // eslint-disable-next-line no-console
-  console.log(`Graphql server now up at port ${process.env.PORT || 3000}`)
+  console.log(`Graphql server now up at port ${process.env.PORT || 3000} :)`)
 })
