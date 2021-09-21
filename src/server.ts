@@ -5,6 +5,7 @@ import cors from 'cors'
 import path from 'path'
 import schema from './schema'
 import database from './database/connection'
+import { extension } from '../knexfile'
 
 dotenv.config()
 
@@ -31,17 +32,17 @@ app.listen(process.env.PORT || 3000, async () => {
     const directory = path.join(__dirname, 'database', 'seeds')
 
     await database.seed.run({
-      specific: 'payment_terms.ts',
+      specific: `payment_terms.${extension}`,
       directory,
     })
 
     await database.seed.run({
-      specific: 'invoices.ts',
+      specific: `invoices.${extension}`,
       directory,
     })
 
     await database.seed.run({
-      specific: 'items.ts',
+      specific: `items.${extension}`,
       directory,
     })
   }

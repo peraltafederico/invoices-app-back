@@ -3,7 +3,7 @@ import path from 'path'
 
 dotenv.config({ path: path.resolve(__dirname + '/.env') })
 
-const extension =
+export const extension =
   process.env.NODE_CONFIG_ENV === 'production'
     ? 'js'
     : 'ts';
