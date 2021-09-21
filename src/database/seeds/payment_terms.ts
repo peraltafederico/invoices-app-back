@@ -1,6 +1,13 @@
 import { Knex } from 'knex'
+import { validateEmptyTable } from '../utils'
 
 export async function seed(knex: Knex): Promise<void> {
+  const isTableEmpty = await validateEmptyTable(knex, 'payment_terms')
+
+  if (!isTableEmpty) {
+    return
+  }
+
   await knex('payment_terms').del()
 
   await knex('payment_terms').insert([
