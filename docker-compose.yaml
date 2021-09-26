@@ -18,7 +18,7 @@ services:
   app:
     build:
       context: .
-    image: peraltafederico/invoices-app:latest
+    image: peraltafederico/invoices-app-back:latest
     env_file: ./.env
     ports:
       - $APP_PORT:$APP_PORT
