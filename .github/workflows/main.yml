@@ -32,7 +32,7 @@ jobs:
         with:
           context: ./
           file: ./Dockerfile
-          push: !e 'contains(steps.vars.outputs.tag, 'v') ? true : false'
+          push: !e "contains(steps.vars.outputs.tag, 'v') ? true : false"
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/invoices-app-back:${{ env.RELEASE_VERSION }}, ${{ secrets.DOCKER_HUB_USERNAME }}/invoices-app-back:latest
           
       - name: Image digest
