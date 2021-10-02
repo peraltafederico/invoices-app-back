@@ -23,9 +23,8 @@ export default class Item extends Model<ItemProps> {
 
   findAllFromInvoice(id: number) {
     return this.model
-      .select('items.*', database.raw('sum(items.price * items.qty) as total'))
+      .select('items.*', database.raw('price * qty as total'))
       .leftJoin('invoices', 'items.id', 'invoices.id')
-      .groupBy('items.id')
       .where({ 'items.id': id })
   }
 }
