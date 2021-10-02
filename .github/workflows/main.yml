@@ -24,9 +24,9 @@ jobs:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
           
-      - name: Build and push
+      - name: Build and push version
         if: contains(steps.vars.outputs.tag, 'v')
-        id: docker_build
+        id: docker_build_
         uses: docker/build-push-action@v2
         env:
           RELEASE_VERSION: ${{ steps.vars.outputs.tag }}
@@ -36,7 +36,7 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/invoices-app-back:${{ env.RELEASE_VERSION }}, ${{ secrets.DOCKER_HUB_USERNAME }}/invoices-app-back:latest
 
-      - name: Build and push
+      - name: Build and push latest
         if: "!contains(steps.vars.outputs.tag, 'v')"
         id: docker_build
         uses: docker/build-push-action@v2
@@ -46,7 +46,7 @@ jobs:
           context: ./
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/invoices-app-back:${{ env.RELEASE_VERSION }}, ${{ secrets.DOCKER_HUB_USERNAME }}/invoices-app-back:latest
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/invoices-app-back:latest
           
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
