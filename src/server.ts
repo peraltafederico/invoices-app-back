@@ -40,11 +40,6 @@ app.listen(process.env.PORT || 3000, async () => {
       specific: `invoices.${extension}`,
       directory,
     })
-
-    await database.seed.run({
-      specific: `items.${extension}`,
-      directory,
-    })
   }
 
   // eslint-disable-next-line no-console
