@@ -57,7 +57,7 @@ const createInvoice: GraphQLFieldConfig<unknown, unknown> = {
       type: GraphQLNonNull(GraphQLInt),
     },
     items: {
-      type: GraphQLList(inputItemType),
+      type: GraphQLNonNull(GraphQLList(inputItemType)),
     },
   },
   resolve: async (_, args) => {
