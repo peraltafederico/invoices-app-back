@@ -2,6 +2,7 @@ import { GraphQLObjectType } from 'graphql'
 import createInvoice from './createInvoice'
 import updateInvoice from './updateInvoice'
 import deleteInvoice from './deleteInvoice'
+import updateStatusInvoice from './updateStatusInvoice'
 
 const mutation = new GraphQLObjectType({
   name: 'InvoiceMutations',
@@ -9,6 +10,7 @@ const mutation = new GraphQLObjectType({
     createInvoice,
     updateInvoice,
     deleteInvoice,
+    updateStatusInvoice,
   }),
 })
 

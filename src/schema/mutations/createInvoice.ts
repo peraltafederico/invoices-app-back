@@ -72,7 +72,9 @@ const createInvoice: GraphQLFieldConfig<unknown, unknown> = {
       })
 
       if (items) {
-        await new Item().createBulk(items, id)
+        const asd = await new Item().createBulk(items, id)
+
+        console.log('asd', asd)
       }
 
       return await new Invoice().findOne(id)
